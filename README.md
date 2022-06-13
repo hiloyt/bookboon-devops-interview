@@ -1,3 +1,7 @@
+# Notes before
+
+Please left all resources without namespace or use "test-devops". This helps us check this test faster for you! Thank you.
+
 # Task 1 (nginx-deploy.yaml)
 
 We want to have permanent /etc/nginx/conf.d/ dir in this deployment. You can use any solution for this, but preferable hostPath.
