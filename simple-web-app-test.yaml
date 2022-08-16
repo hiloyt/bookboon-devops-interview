@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: simple-web-app
-  name: simple-web-app-gui-test
+  name: simple-web-app
 spec:
   progressDeadlineSeconds: 600
   replicas: 0
@@ -24,7 +24,7 @@ spec:
       containers:
       - args:
         - -Dconfig.file=/etc/simple-web-app/application.conf
-        image: lmenezes/simple-web-app:0.9,4
+        image: visheshpapreja/simple-web-app-in-docker:latest
         imagePullPolicy: Never
         livenessProbe:
           failureThreshold: 3
