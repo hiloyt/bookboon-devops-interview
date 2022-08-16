@@ -2,15 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: cerebro
-  name: cerebro-gui-test
+    app: simple-web-app
+  name: simple-web-app-gui-test
 spec:
   progressDeadlineSeconds: 600
   replicas: 0
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: cerebro
+      app: simple-web-app
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,12 +19,12 @@ spec:
   template:
     metadata:
       labels:
-        app: cerebro
+        app: simple-web-app
     spec:
       containers:
       - args:
-        - -Dconfig.file=/etc/cerebro/application.conf
-        image: lmenezes/cerebro:0.9,4
+        - -Dconfig.file=/etc/simple-web-app/application.conf
+        image: lmenezes/simple-web-app:0.9,4
         imagePullPolicy: Never
         livenessProbe:
           failureThreshold: 3
@@ -36,7 +36,7 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
-        name: cerebro
+        name: simple-web-app
         ports:
         - containerPort: 9000
           name: http
@@ -51,15 +51,14 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 1
-        resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         volumeMounts:
-        - mountPath: /var/db/cerebro
+        - mountPath: /var/db/simple-web-app
           name: db
-        - mountPath: /etc/cerebro
+        - mountPath: /etc/simple-web-app
           name: config
-        - mountPath: /opt/cerebro/logs/
+        - mountPath: /opt/simple-web-app/logs/
           name: logs
         - mountPath: /tmp
           name: tmp
@@ -83,7 +82,7 @@ spec:
         name: db
       - configMap:
           defaultMode: 420
-          name: cerebro-gui
+          name: simple-web-app-gui
         name: config
       - emptyDir: {}
         name: logs
