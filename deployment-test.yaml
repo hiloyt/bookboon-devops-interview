@@ -6,15 +6,15 @@ metadata:
   name: cerebro-gui-test
 spec:
   progressDeadlineSeconds: 600
-  replicas: 0
+  replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: cerebro
   strategy:
     rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+      maxSurge: 25
+      maxUnavailable: 25
     type: RollingUpdate
   template:
     metadata:
